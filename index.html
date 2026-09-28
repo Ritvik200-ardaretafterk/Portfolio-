@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ganugapenta Ritvik — Full Stack Developer & AI Engineer</title>
+  <meta name="description" content="Portfolio of Ganugapenta Ritvik — B.Tech CSE student at MANIT Bhopal. Full-Stack Developer specializing in React, Node.js, AI/ML, and scalable web applications." />
+  <meta property="og:title" content="Ganugapenta Ritvik — Full Stack Developer" />
+  <meta property="og:description" content="Full-Stack Developer | AI Enthusiast | MANIT Bhopal" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- CURSOR -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-follower" id="cursorFollower"></div>
+
+  <!-- CANVAS BACKGROUND -->
+  <canvas id="bgCanvas"></canvas>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#home" class="nav-logo">
+        <span class="logo-bracket">&lt;</span>Ritvik<span class="logo-bracket">/&gt;</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#skills" class="nav-link">Skills</a></li>
+        <li><a href="#projects" class="nav-link">Projects</a></li>
+        <li><a href="#achievements" class="nav-link">Achievements</a></li>
+        <li><a href="#education" class="nav-link">Education</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+      <a href="https://github.com/Ritvik200-ardaretafterk" target="_blank" class="btn-hire">
+        <i class="fab fa-github"></i> GitHub
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <div class="hero-badge reveal-up">
+        <span class="badge-dot"></span>
+        Available for Internships & Collaborations
+      </div>
+      <h1 class="hero-name reveal-up">
+        <span class="name-line">Ganugapenta</span>
+        <span class="name-line gradient-text">Ritvik</span>
+      </h1>
+      <div class="hero-title reveal-up">
+        <span class="title-static">I build</span>
+        <span class="title-dynamic" id="titleDynamic"></span>
+      </div>
+      <p class="hero-desc reveal-up">
+        Full-Stack Developer & AI Enthusiast crafting scalable web applications,<br/>
+        real-time systems, and AI-powered experiences. B.Tech CSE @ MANIT Bhopal.
+      </p>
+      <div class="hero-actions reveal-up">
+        <a href="#projects" class="btn-primary">
+          <span>View Projects</span>
+          <i class="fas fa-arrow-right"></i>
+        </a>
+        <a href="mailto:ganugaritwik@gmail.com" class="btn-secondary">
+          <i class="fas fa-envelope"></i>
+          <span>Get In Touch</span>
+        </a>
+      </div>
+      <div class="hero-socials reveal-up">
+        <a href="https://github.com/Ritvik200-ardaretafterk" target="_blank" class="social-icon" aria-label="GitHub">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="https://linkedin.com/in/g-ritvik" target="_blank" class="social-icon" aria-label="LinkedIn">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+        <a href="mailto:ganugaritwik@gmail.com" class="social-icon" aria-label="Email">
+          <i class="fas fa-envelope"></i>
+        </a>
+        <a href="https://leetcode.com/" target="_blank" class="social-icon" aria-label="LeetCode">
+          <i class="fas fa-code"></i>
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-card-container">
+        <div class="floating-card card-1">
+          <div class="card-icon"><i class="fas fa-layer-group"></i></div>
+          <div>
+            <div class="card-label">Full Stack</div>
+            <div class="card-sublabel">React • Node • MongoDB</div>
+          </div>
+        </div>
+        <div class="floating-card card-2">
+          <div class="card-icon ai"><i class="fas fa-brain"></i></div>
+          <div>
+            <div class="card-label">AI/ML</div>
+            <div class="card-sublabel">Gemini API • RAG • ML</div>
+          </div>
+        </div>
+        <div class="floating-card card-3">
+          <div class="card-icon cloud"><i class="fas fa-cloud"></i></div>
+          <div>
+            <div class="card-label">Cloud & DevOps</div>
+            <div class="card-sublabel">AWS • Docker • Linux</div>
+          </div>
+        </div>
+        <div class="hero-avatar-wrap">
+          <div class="avatar-ring ring-1"></div>
+          <div class="avatar-ring ring-2"></div>
+          <div class="avatar-ring ring-3"></div>
+          <div class="avatar-core">
+            <span class="avatar-initials">GR</span>
+          </div>
+          <div class="orbit orbit-1"><div class="orbit-dot"></div></div>
+          <div class="orbit orbit-2"><div class="orbit-dot dot-2"></div></div>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-pill">
+            <span class="stat-num">20+</span>
+            <span class="stat-text">Live Sites</span>
+          </div>
+          <div class="stat-pill">
+            <span class="stat-num">400+</span>
+            <span class="stat-text">DSA Problems</span>
+          </div>
+          <div class="stat-pill">
+            <span class="stat-num">200+</span>
+            <span class="stat-text">App Downloads</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scroll-indicator">
+      <div class="scroll-mouse">
+        <div class="scroll-wheel"></div>
+      </div>
+      <span>Scroll Down</span>
+    </div>
+  </section>
+
+  <!-- ABOUT SECTION -->
+  <section class="section about-section" id="about">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <span class="section-tag">Who I Am</span>
+        <h2 class="section-title">About <span class="gradient-text">Me</span></h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-text reveal-left">
+          <p class="about-lead">
+            Hey! I'm <strong>Ritvik</strong> — a passionate Full-Stack Developer and AI enthusiast pursuing B.Tech in Computer Science at <strong>MANIT Bhopal</strong>.
+          </p>
+          <p>
+            I love building end-to-end web applications that solve real problems. From crafting pixel-perfect UIs with React to engineering robust Node.js backends with real-time capabilities, I thrive on bringing ideas to life.
+          </p>
+          <p>
+            I've delivered <strong>20+ freelance websites</strong>, built a social e-commerce platform with <strong>200+ downloads</strong>, and I'm always exploring cutting-edge AI/ML to integrate intelligent features into my projects.
+          </p>
+          <div class="about-tags">
+            <span class="tag">🎓 MANIT Bhopal</span>
+            <span class="tag">☁️ AWS Certified</span>
+            <span class="tag">🏆 SIH Semi-Finalist</span>
+            <span class="tag">🤖 AI Enthusiast</span>
+          </div>
+        </div>
+        <div class="about-facts reveal-right">
+          <div class="fact-card">
+            <div class="fact-icon"><i class="fas fa-map-marker-alt"></i></div>
+            <div>
+              <div class="fact-label">Location</div>
+              <div class="fact-value">Bhopal, India</div>
+            </div>
+          </div>
+          <div class="fact-card">
+            <div class="fact-icon"><i class="fas fa-graduation-cap"></i></div>
+            <div>
+              <div class="fact-label">Education</div>
+              <div class="fact-value">B.Tech CSE, 2023–2027</div>
+            </div>
+          </div>
+          <div class="fact-card">
+            <div class="fact-icon"><i class="fas fa-phone"></i></div>
+            <div>
+              <div class="fact-label">Phone</div>
+              <div class="fact-value">+91 85230 15813</div>
+            </div>
+          </div>
+          <div class="fact-card">
+            <div class="fact-icon"><i class="fas fa-envelope"></i></div>
+            <div>
+              <div class="fact-label">Email</div>
+              <div class="fact-value">ganugaritwik@gmail.com</div>
+            </div>
+          </div>
+          <div class="fact-card">
+            <div class="fact-icon"><i class="fas fa-briefcase"></i></div>
+            <div>
+              <div class="fact-label">Status</div>
+              <div class="fact-value open-status">Open to Opportunities</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS SECTION -->
+  <section class="section skills-section" id="skills">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <span class="section-tag">What I Know</span>
+        <h2 class="section-title">Technical <span class="gradient-text">Skills</span></h2>
+      </div>
+
+      <div class="skills-categories reveal-up">
+        <!-- Languages -->
+        <div class="skill-category">
+          <div class="skill-cat-header">
+            <div class="skill-cat-icon"><i class="fas fa-code"></i></div>
+            <span>Languages</span>
+          </div>
+          <div class="skill-pills">
+            <div class="skill-pill" data-level="90"><i class="fab fa-js-square"></i> JavaScript</div>
+            <div class="skill-pill" data-level="85"><span class="skill-icon-text">C++</span></div>
+            <div class="skill-pill" data-level="80"><i class="fab fa-python"></i> Python</div>
+            <div class="skill-pill" data-level="75"><i class="fas fa-database"></i> SQL</div>
+            <div class="skill-pill" data-level="90"><i class="fab fa-html5"></i> HTML</div>
+            <div class="skill-pill" data-level="85"><i class="fab fa-css3-alt"></i> CSS</div>
+          </div>
+        </div>
+
+        <!-- Frontend -->
+        <div class="skill-category">
+          <div class="skill-cat-header">
+            <div class="skill-cat-icon frontend"><i class="fas fa-desktop"></i></div>
+            <span>Frontend</span>
+          </div>
+          <div class="skill-pills">
+            <div class="skill-pill" data-level="92"><i class="fab fa-react"></i> React.js</div>
+            <div class="skill-pill" data-level="80"><span class="skill-icon-text">N</span> Next.js</div>
+            <div class="skill-pill" data-level="88"><span class="skill-icon-text">TW</span> Tailwind CSS</div>
+          </div>
+        </div>
+
+        <!-- Backend -->
+        <div class="skill-category">
+          <div class="skill-cat-header">
+            <div class="skill-cat-icon backend"><i class="fas fa-server"></i></div>
+            <span>Backend</span>
+          </div>
+          <div class="skill-pills">
+            <div class="skill-pill" data-level="90"><i class="fab fa-node-js"></i> Node.js</div>
+            <div class="skill-pill" data-level="87"><span class="skill-icon-text">Ex</span> Express.js</div>
+            <div class="skill-pill" data-level="80"><span class="skill-icon-text">API</span> REST APIs</div>
+            <div class="skill-pill" data-level="75"><span class="skill-icon-text">⚡</span> Socket.IO</div>
+            <div class="skill-pill" data-level="78"><span class="skill-icon-text">🔐</span> JWT Auth</div>
+          </div>
+        </div>
+
+        <!-- AI/ML -->
+        <div class="skill-category">
+          <div class="skill-cat-header">
+            <div class="skill-cat-icon ai"><i class="fas fa-brain"></i></div>
+            <span>AI / ML & Data</span>
+          </div>
+          <div class="skill-pills">
+            <div class="skill-pill" data-level="78"><span class="skill-icon-text">✨</span> Gemini API</div>
+            <div class="skill-pill" data-level="72"><span class="skill-icon-text">RAG</span> RAG Systems</div>
+            <div class="skill-pill" data-level="75"><span class="skill-icon-text">SK</span> Scikit-Learn</div>
+            <div class="skill-pill" data-level="80"><span class="skill-icon-text">Np</span> NumPy</div>
+            <div class="skill-pill" data-level="80"><span class="skill-icon-text">Pd</span> Pandas</div>
+          </div>
+        </div>
+
+        <!-- Databases -->
+        <div class="skill-category">
+          <div class="skill-cat-header">
+            <div class="skill-cat-icon db"><i class="fas fa-database"></i></div>
+            <span>Databases</span>
+          </div>
+          <div class="skill-pills">
+            <div class="skill-pill" data-level="88"><span class="skill-icon-text">🍃</span> MongoDB</div>
+            <div class="skill-pill" data-level="80"><span class="skill-icon-text">🐘</span> PostgreSQL</div>
+            <div class="skill-pill" data-level="75"><span class="skill-icon-text">🐬</span> MySQL</div>
+            <div class="skill-pill" data-level="82"><span class="skill-icon-text">SB</span> Supabase</div>
+            <div class="skill-pill" data-level="70"><span class="skill-icon-text">🔴</span> Redis</div>
+          </div>
+        </div>
+
+        <!-- Cloud & Tools -->
+        <div class="skill-category">
+          <div class="skill-cat-header">
+            <div class="skill-cat-icon cloud"><i class="fas fa-cloud"></i></div>
+            <span>Cloud & Tools</span>
+          </div>
+          <div class="skill-pills">
+            <div class="skill-pill" data-level="78"><i class="fab fa-aws"></i> AWS</div>
+            <div class="skill-pill" data-level="75"><i class="fab fa-docker"></i> Docker</div>
+            <div class="skill-pill" data-level="88"><i class="fab fa-git-alt"></i> Git</div>
+            <div class="skill-pill" data-level="70"><i class="fab fa-linux"></i> Linux</div>
+            <div class="skill-pill" data-level="75"><span class="skill-icon-text">☁️</span> Cloudinary</div>
+            <div class="skill-pill" data-level="72"><span class="skill-icon-text">₹</span> Razorpay</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS SECTION -->
+  <section class="section projects-section" id="projects">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <span class="section-tag">What I've Built</span>
+        <h2 class="section-title">Featured <span class="gradient-text">Projects</span></h2>
+      </div>
+
+      <div class="projects-grid">
+
+        <!-- VibeXpert -->
+        <div class="project-card featured reveal-up" id="proj-vibexpert">
+          <div class="project-badge">🔥 Featured</div>
+          <div class="project-header">
+            <div class="project-icon-wrap vibe">
+              <i class="fas fa-fire"></i>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/Ritvik200-ardaretafterk/backend" target="_blank" class="proj-link" aria-label="GitHub">
+                <i class="fab fa-github"></i>
+              </a>
+              <a href="https://vibexpert.vercel.app/" target="_blank" class="proj-link live" aria-label="Live Demo">
+                <i class="fas fa-external-link-alt"></i>
+              </a>
+            </div>
+          </div>
+          <h3 class="project-title">VibeXpert</h3>
+          <p class="project-subtitle">Student Social & Multi-Vendor E-Commerce Platform</p>
+          <p class="project-desc">
+            A campus-focused social &amp; commerce super-app for college students — combining a vibrant social feed, anonymous Ghost Chat, short-form video (RealVibes), a gamified points system, and a multi-vendor marketplace. <strong>Live on Google Play Store.</strong>
+          </p>
+          <div class="project-metrics">
+            <div class="metric">
+              <i class="fas fa-download"></i>
+              <span>200+ Downloads</span>
+            </div>
+            <div class="metric">
+              <i class="fas fa-store"></i>
+              <span>17+ Sellers</span>
+            </div>
+            <div class="metric">
+              <i class="fab fa-google-play"></i>
+              <span>Play Store Live</span>
+            </div>
+            <div class="metric">
+              <i class="fas fa-bolt"></i>
+              <span>Real-time</span>
+            </div>
+          </div>
+          <div class="project-tech">
+            <span class="tech-tag react">React</span>
+            <span class="tech-tag node">Node.js</span>
+            <span class="tech-tag mongo">MongoDB</span>
+            <span class="tech-tag supabase">Supabase</span>
+            <span class="tech-tag redis">Redis</span>
+            <span class="tech-tag socket">Socket.IO</span>
+            <span class="tech-tag">Razorpay</span>
+            <span class="tech-tag ai">Gemini AI</span>
+            <span class="tech-tag">Cloudinary</span>
+          </div>
+          <div class="project-features">
+            <div class="feature-item"><i class="fas fa-check"></i> Social Feed, Posts, RealVibes (Short Videos)</div>
+            <div class="feature-item"><i class="fas fa-check"></i> Ghost Chat (Anonymous) + Real-Time Messaging</div>
+            <div class="feature-item"><i class="fas fa-check"></i> V-Points Gamification &amp; Premium Profiles</div>
+            <div class="feature-item"><i class="fas fa-check"></i> Multi-vendor Campus Marketplace + Razorpay</div>
+            <div class="feature-item"><i class="fas fa-check"></i> College-based Rooms &amp; AI-Powered Features</div>
+          </div>
+          <div class="proj-actions">
+            <a href="https://vibexpert.vercel.app/" target="_blank" class="proj-action-btn btn-live">
+              <i class="fas fa-external-link-alt"></i> Open Web App
+            </a>
+            <a href="https://play.google.com/store/search?q=vibexpert" target="_blank" class="proj-action-btn btn-play">
+              <i class="fab fa-google-play"></i> Play Store
+            </a>
+            <a href="https://github.com/Ritvik200-ardaretafterk/backend" target="_blank" class="proj-action-btn btn-code">
+              <i class="fab fa-github"></i> View Code
+            </a>
+          </div>
+        </div>
+
+        <!-- Calling AI -->
+        <div class="project-card reveal-up" id="proj-callingai">
+          <div class="project-header">
+            <div class="project-icon-wrap calling">
+              <i class="fas fa-phone-alt"></i>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/Ritvik200-ardaretafterk/calling-ai" target="_blank" class="proj-link" aria-label="GitHub">
+                <i class="fab fa-github"></i>
+              </a>
+            </div>
+          </div>
+          <h3 class="project-title">Calling AI</h3>
+          <p class="project-subtitle">AI-Powered Call Assistant</p>
+          <p class="project-desc">
+            A cutting-edge AI-powered calling agent that can make and receive phone calls and hold real AI-driven conversations. Deployed as a cross-platform app (Web + Android via Capacitor) with persistent call management and conversation workflows.
+          </p>
+          <div class="project-tech">
+            <span class="tech-tag react">React</span>
+            <span class="tech-tag node">Node.js</span>
+            <span class="tech-tag">Express.js</span>
+            <span class="tech-tag supabase">Supabase</span>
+            <span class="tech-tag">Capacitor</span>
+            <span class="tech-tag">REST APIs</span>
+            <span class="tech-tag ai">AI/LLM</span>
+            <span class="tech-tag">WebSockets</span>
+          </div>
+          <div class="project-features">
+            <div class="feature-item"><i class="fas fa-check"></i> Cross-platform Web + Android App</div>
+            <div class="feature-item"><i class="fas fa-check"></i> AI-Powered Real Voice Conversations</div>
+            <div class="feature-item"><i class="fas fa-check"></i> Call Workflow & Conversation Management</div>
+            <div class="feature-item"><i class="fas fa-check"></i> Supabase Auth + Persistent Data</div>
+          </div>
+          <div class="proj-actions">
+            <a href="https://github.com/Ritvik200-ardaretafterk/calling-ai" target="_blank" class="proj-action-btn btn-live">
+              <i class="fab fa-github"></i> View Source Code
+            </a>
+          </div>
+        </div>
+
+        <!-- NutriLens -->
+        <div class="project-card reveal-up" id="proj-nutrilens">
+          <div class="project-header">
+            <div class="project-icon-wrap nutri">
+              <i class="fas fa-seedling"></i>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/Ritvik200-ardaretafterk/NurtiLens" target="_blank" class="proj-link" aria-label="GitHub">
+                <i class="fab fa-github"></i>
+              </a>
+              <a href="https://food-ai-fawn.vercel.app/" target="_blank" class="proj-link live" aria-label="Live Demo">
+                <i class="fas fa-external-link-alt"></i>
+              </a>
+            </div>
+          </div>
+          <h3 class="project-title">NutriLens</h3>
+          <p class="project-subtitle">AI-Powered Food Recognition & Nutrition Analysis</p>
+          <p class="project-desc">
+            An intelligent food analysis system that processes food images and generates detailed nutritional information using AI/ML. Built with Python, Flask, and ML pipelines for image preprocessing and prediction.
+          </p>
+          <div class="project-tech">
+            <span class="tech-tag python">Python</span>
+            <span class="tech-tag">Flask</span>
+            <span class="tech-tag ai">Machine Learning</span>
+            <span class="tech-tag">SQL</span>
+            <span class="tech-tag">REST APIs</span>
+          </div>
+          <div class="project-features">
+            <div class="feature-item"><i class="fas fa-check"></i> Image-based Food Recognition</div>
+            <div class="feature-item"><i class="fas fa-check"></i> Nutritional Data Analysis</div>
+            <div class="feature-item"><i class="fas fa-check"></i> End-to-end ML Pipeline</div>
+          </div>
+          <div class="proj-actions">
+            <a href="https://food-ai-fawn.vercel.app/" target="_blank" class="proj-action-btn btn-live">
+              <i class="fas fa-external-link-alt"></i> Open Live Demo
+            </a>
+            <a href="https://github.com/Ritvik200-ardaretafterk/NurtiLens" target="_blank" class="proj-action-btn btn-code">
+              <i class="fab fa-github"></i> View Code
+            </a>
+          </div>
+        </div>
+
+        <!-- Freelance -->
+        <div class="project-card freelance-card reveal-up">
+          <div class="project-header">
+            <div class="project-icon-wrap freelance">
+              <i class="fas fa-laptop-code"></i>
+            </div>
+          </div>
+          <h3 class="project-title">Freelance Projects</h3>
+          <p class="project-subtitle">20+ Live Websites Delivered</p>
+          <p class="project-desc">
+            Delivered 20+ production-ready websites for individual clients and small businesses — ranging from business landing pages to full-featured web applications using modern web technologies.
+          </p>
+          <div class="project-tech">
+            <span class="tech-tag">HTML/CSS</span>
+            <span class="tech-tag react">React</span>
+            <span class="tech-tag node">Node.js</span>
+            <span class="tech-tag mongo">MongoDB</span>
+            <span class="tech-tag">JavaScript</span>
+          </div>
+          <div class="freelance-counter">
+            <div class="counter-item">
+              <div class="counter-num" data-target="20">0</div>
+              <div class="counter-label">Live Websites</div>
+            </div>
+            <div class="counter-divider"></div>
+            <div class="counter-item">
+              <div class="counter-num" data-target="100">0</div>
+              <div class="counter-label">Satisfaction Rate</div>
+            </div>
+          </div>
+          <div class="proj-actions" style="margin-top:16px">
+            <a href="mailto:ganugaritwik@gmail.com" class="proj-action-btn btn-live">
+              <i class="fas fa-envelope"></i> Hire Me for a Project
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACHIEVEMENTS SECTION -->
+  <section class="section achievements-section" id="achievements">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <span class="section-tag">My Journey</span>
+        <h2 class="section-title">Achievements & <span class="gradient-text">Recognition</span></h2>
+      </div>
+
+      <div class="achievements-grid">
+        <div class="achievement-card reveal-up" style="--delay:0.1s">
+          <div class="ach-glow"></div>
+          <div class="ach-icon">
+            <i class="fas fa-code"></i>
+          </div>
+          <div class="ach-content">
+            <h3>400+ Problems Solved</h3>
+            <p>Solved 400+ DSA and competitive programming problems across coding platforms, demonstrating strong algorithmic thinking.</p>
+          </div>
+          <div class="ach-badge">🏅 DSA</div>
+        </div>
+
+        <div class="achievement-card reveal-up" style="--delay:0.2s">
+          <div class="ach-glow ach-glow-2"></div>
+          <div class="ach-icon icon-2">
+            <i class="fas fa-globe"></i>
+          </div>
+          <div class="ach-content">
+            <h3>Freelance Developer</h3>
+            <p>Successfully delivered 20+ live websites for individual clients and businesses — HTML, CSS, JavaScript, Node.js, MongoDB.</p>
+          </div>
+          <div class="ach-badge">💼 Pro</div>
+        </div>
+
+        <div class="achievement-card reveal-up" style="--delay:0.3s">
+          <div class="ach-glow ach-glow-3"></div>
+          <div class="ach-icon icon-3">
+            <i class="fas fa-trophy"></i>
+          </div>
+          <div class="ach-content">
+            <h3>Hack With Hyderabad</h3>
+            <p>Reached the <strong>Finals</strong> at Hack With Hyderabad — one of the largest hackathons in the region.</p>
+          </div>
+          <div class="ach-badge">🏆 Finalist</div>
+        </div>
+
+        <div class="achievement-card reveal-up" style="--delay:0.4s">
+          <div class="ach-glow ach-glow-4"></div>
+          <div class="ach-icon icon-4">
+            <i class="fas fa-lightbulb"></i>
+          </div>
+          <div class="ach-content">
+            <h3>Smart India Hackathon</h3>
+            <p>Advanced to the <strong>Semi-Finals</strong> of Smart India Hackathon — India's largest national hackathon.</p>
+          </div>
+          <div class="ach-badge">🥈 Semi-Final</div>
+        </div>
+
+        <div class="achievement-card reveal-up" style="--delay:0.5s">
+          <div class="ach-glow"></div>
+          <div class="ach-icon icon-5">
+            <i class="fab fa-aws"></i>
+          </div>
+          <div class="ach-content">
+            <h3>AWS Cloud Certified</h3>
+            <p>Officially certified in <strong>AWS Cloud</strong> technologies — demonstrating expertise in cloud computing infrastructure.</p>
+          </div>
+          <div class="ach-badge">☁️ Certified</div>
+        </div>
+
+        <div class="achievement-card reveal-up" style="--delay:0.6s">
+          <div class="ach-glow ach-glow-2"></div>
+          <div class="ach-icon icon-6">
+            <i class="fas fa-robot"></i>
+          </div>
+          <div class="ach-content">
+            <h3>Vision Robotics</h3>
+            <p>Led a team as <strong>Team Leader</strong> in Vision Robotics, developing autonomous robotic solutions.</p>
+          </div>
+          <div class="ach-badge">🤖 Leader</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION SECTION -->
+  <section class="section education-section" id="education">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <span class="section-tag">Academic Path</span>
+        <h2 class="section-title">My <span class="gradient-text">Education</span></h2>
+      </div>
+      <div class="timeline">
+        <div class="timeline-line"></div>
+
+        <div class="timeline-item reveal-left">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-header">
+              <div class="timeline-icon">
+                <i class="fas fa-university"></i>
+              </div>
+              <div>
+                <h3 class="timeline-title">Maulana Azad National Institute of Technology</h3>
+                <p class="timeline-place">Bhopal, Madhya Pradesh</p>
+              </div>
+            </div>
+            <div class="timeline-body">
+              <div class="degree-row">
+                <span class="degree-badge">B.Tech</span>
+                <span class="degree-name">Computer Science & Engineering</span>
+              </div>
+              <div class="timeline-meta">
+                <span><i class="fas fa-calendar"></i> 2023 – 2027</span>
+                <span class="cgpa-badge"><i class="fas fa-star"></i> CGPA: 6.23</span>
+              </div>
+              <div class="timeline-courses">
+                <span class="course-tag">Data Structures & Algorithms</span>
+                <span class="course-tag">Object-Oriented Programming</span>
+                <span class="course-tag">Operating Systems</span>
+                <span class="course-tag">Database Management</span>
+                <span class="course-tag">Machine Learning</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal-right">
+          <div class="timeline-dot dot-2"></div>
+          <div class="timeline-content">
+            <div class="timeline-header">
+              <div class="timeline-icon icon-school">
+                <i class="fas fa-school"></i>
+              </div>
+              <div>
+                <h3 class="timeline-title">Excellencia Junior College</h3>
+                <p class="timeline-place">Hyderabad, Telangana</p>
+              </div>
+            </div>
+            <div class="timeline-body">
+              <div class="degree-row">
+                <span class="degree-badge badge-2">Class XII</span>
+                <span class="degree-name">Physics, Chemistry & Mathematics</span>
+              </div>
+              <div class="timeline-meta">
+                <span><i class="fas fa-calendar"></i> 2021 – 2023</span>
+                <span class="cgpa-badge badge-score"><i class="fas fa-percent"></i> 85.7%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section class="section contact-section" id="contact">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <span class="section-tag">Let's Connect</span>
+        <h2 class="section-title">Get In <span class="gradient-text">Touch</span></h2>
+        <p class="section-desc">Whether you have a project idea, internship opportunity, or just want to connect — my inbox is always open!</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-info reveal-left">
+          <div class="contact-card-link">
+            <div class="contact-link-item">
+              <div class="contact-link-icon">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <div>
+                <div class="contact-link-label">Email</div>
+                <a href="mailto:ganugaritwik@gmail.com" class="contact-link-val">ganugaritwik@gmail.com</a>
+              </div>
+            </div>
+            <div class="contact-link-item">
+              <div class="contact-link-icon linkedin-icon">
+                <i class="fab fa-linkedin-in"></i>
+              </div>
+              <div>
+                <div class="contact-link-label">LinkedIn</div>
+                <a href="https://linkedin.com/in/g-ritvik" target="_blank" class="contact-link-val">linkedin.com/in/g-ritvik</a>
+              </div>
+            </div>
+            <div class="contact-link-item">
+              <div class="contact-link-icon github-icon">
+                <i class="fab fa-github"></i>
+              </div>
+              <div>
+                <div class="contact-link-label">GitHub</div>
+                <a href="https://github.com/Ritvik200-ardaretafterk" target="_blank" class="contact-link-val">Ritvik200-ardaretafterk</a>
+              </div>
+            </div>
+            <div class="contact-link-item">
+              <div class="contact-link-icon phone-icon">
+                <i class="fas fa-phone"></i>
+              </div>
+              <div>
+                <div class="contact-link-label">Phone</div>
+                <a href="tel:+918523015813" class="contact-link-val">+91 85230 15813</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="availability-box">
+            <div class="avail-dot"></div>
+            <div>
+              <div class="avail-title">Currently Available</div>
+              <div class="avail-desc">Open to internships, freelance projects & full-time roles</div>
+            </div>
+          </div>
+        </div>
+
+        <form class="contact-form reveal-right" id="contactForm" onsubmit="handleFormSubmit(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="contactName">Your Name</label>
+              <input type="text" id="contactName" name="name" placeholder="John Doe" required />
+            </div>
+            <div class="form-group">
+              <label for="contactEmail">Email Address</label>
+              <input type="email" id="contactEmail" name="email" placeholder="john@example.com" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="contactSubject">Subject</label>
+            <input type="text" id="contactSubject" name="subject" placeholder="Project Collaboration / Internship Offer..." />
+          </div>
+          <div class="form-group">
+            <label for="contactMessage">Message</label>
+            <textarea id="contactMessage" name="message" placeholder="Tell me about your project or opportunity..." rows="5" required></textarea>
+          </div>
+          <button type="submit" class="btn-submit" id="submitBtn">
+            <span class="btn-text">Send Message</span>
+            <i class="fas fa-paper-plane"></i>
+          </button>
+          <div class="form-success" id="formSuccess">
+            <i class="fas fa-check-circle"></i>
+            <span>Message sent! I'll get back to you soon.</span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-top">
+        <a href="#home" class="footer-logo">
+          <span class="logo-bracket">&lt;</span>Ritvik<span class="logo-bracket">/&gt;</span>
+        </a>
+        <p class="footer-tagline">Building the future, one commit at a time ✨</p>
+        <div class="footer-socials">
+          <a href="https://github.com/Ritvik200-ardaretafterk" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+          <a href="https://linkedin.com/in/g-ritvik" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="mailto:ganugaritwik@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+          <a href="https://leetcode.com/" target="_blank" aria-label="LeetCode"><i class="fas fa-code"></i></a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Ganugapenta Ritvik. Crafted with ❤️ and lots of ☕</p>
+        <div class="footer-nav">
+          <a href="#about">About</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
