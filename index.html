@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ganugapenta Ritvik — Full Stack Developer & AI Engineer</title>
+  <title>Ganugapenta Ritvik — Full Stack Developer &amp; AI Engineer</title>
   <meta name="description" content="Portfolio of Ganugapenta Ritvik — B.Tech CSE student at MANIT Bhopal. Full-Stack Developer specializing in React, Node.js, AI/ML, and scalable web applications." />
   <meta property="og:title" content="Ganugapenta Ritvik — Full Stack Developer" />
   <meta property="og:description" content="Full-Stack Developer | AI Enthusiast | MANIT Bhopal" />
@@ -19,8 +19,60 @@
   <div class="cursor" id="cursor"></div>
   <div class="cursor-follower" id="cursorFollower"></div>
 
-  <!-- CANVAS BACKGROUND -->
+  <!-- CANVAS BACKGROUND (fixed, shown blurred on non-hero sections) -->
   <canvas id="bgCanvas"></canvas>
+
+  <!-- ROTATING ROLES TICKER (bottom bar, hidden on contact section) -->
+  <div class="roles-ticker-wrap" id="rolesTicker">
+    <div class="roles-ticker">
+      <span class="ticker-item"><span class="ticker-dot"></span>AI Engineer</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Full Stack Developer</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>React Specialist</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Node.js Developer</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>ML Enthusiast</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Cloud Architect</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>UI/UX Craftsman</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>DevOps Engineer</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Competitive Programmer</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Freelance Developer</span>
+      <!-- Duplicate for seamless loop -->
+      <span class="ticker-item"><span class="ticker-dot"></span>AI Engineer</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Full Stack Developer</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>React Specialist</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Node.js Developer</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>ML Enthusiast</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Cloud Architect</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>UI/UX Craftsman</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>DevOps Engineer</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Competitive Programmer</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Freelance Developer</span>
+    </div>
+  </div>
+
+  <!-- ROTATING ROLE WHEEL (right side vertical) -->
+  <div class="role-wheel-container" id="roleWheel">
+    <div class="role-wheel">
+      <span class="role-wheel-item">AI Engineer</span>
+      <span class="role-wheel-item">Full Stack</span>
+      <span class="role-wheel-item">React Dev</span>
+      <span class="role-wheel-item">Node.js</span>
+      <span class="role-wheel-item">ML Engineer</span>
+      <span class="role-wheel-item">Cloud Dev</span>
+      <span class="role-wheel-item">UI Crafter</span>
+      <span class="role-wheel-item">DevOps</span>
+      <span class="role-wheel-item">Freelancer</span>
+      <!-- Duplicate -->
+      <span class="role-wheel-item">AI Engineer</span>
+      <span class="role-wheel-item">Full Stack</span>
+      <span class="role-wheel-item">React Dev</span>
+      <span class="role-wheel-item">Node.js</span>
+      <span class="role-wheel-item">ML Engineer</span>
+      <span class="role-wheel-item">Cloud Dev</span>
+      <span class="role-wheel-item">UI Crafter</span>
+      <span class="role-wheel-item">DevOps</span>
+      <span class="role-wheel-item">Freelancer</span>
+    </div>
+  </div>
 
   <!-- NAVBAR -->
   <nav class="navbar" id="navbar">
@@ -50,7 +102,7 @@
     <div class="hero-content">
       <div class="hero-badge reveal-up">
         <span class="badge-dot"></span>
-        Available for Internships & Collaborations
+        Available for Internships &amp; Collaborations
       </div>
       <h1 class="hero-name reveal-up">
         <span class="name-line">Ganugapenta</span>
@@ -61,7 +113,7 @@
         <span class="title-dynamic" id="titleDynamic"></span>
       </div>
       <p class="hero-desc reveal-up">
-        Full-Stack Developer & AI Enthusiast crafting scalable web applications,<br/>
+        Full-Stack Developer &amp; AI Enthusiast crafting scalable web applications,<br/>
         real-time systems, and AI-powered experiences. B.Tech CSE @ MANIT Bhopal.
       </p>
       <div class="hero-actions reveal-up">
@@ -109,7 +161,7 @@
         <div class="floating-card card-3">
           <div class="card-icon cloud"><i class="fas fa-cloud"></i></div>
           <div>
-            <div class="card-label">Cloud & DevOps</div>
+            <div class="card-label">Cloud &amp; DevOps</div>
             <div class="card-sublabel">AWS • Docker • Linux</div>
           </div>
         </div>
@@ -150,6 +202,7 @@
 
   <!-- ABOUT SECTION -->
   <section class="section about-section" id="about">
+    <div class="section-bg-blur"></div>
     <div class="container">
       <div class="section-header reveal-up">
         <span class="section-tag">Who I Am</span>
@@ -216,6 +269,7 @@
 
   <!-- SKILLS SECTION -->
   <section class="section skills-section" id="skills">
+    <div class="section-bg-blur"></div>
     <div class="container">
       <div class="section-header reveal-up">
         <span class="section-tag">What I Know</span>
@@ -271,7 +325,7 @@
         <div class="skill-category">
           <div class="skill-cat-header">
             <div class="skill-cat-icon ai"><i class="fas fa-brain"></i></div>
-            <span>AI / ML & Data</span>
+            <span>AI / ML &amp; Data</span>
           </div>
           <div class="skill-pills">
             <div class="skill-pill" data-level="78"><span class="skill-icon-text">✨</span> Gemini API</div>
@@ -301,7 +355,7 @@
         <div class="skill-category">
           <div class="skill-cat-header">
             <div class="skill-cat-icon cloud"><i class="fas fa-cloud"></i></div>
-            <span>Cloud & Tools</span>
+            <span>Cloud &amp; Tools</span>
           </div>
           <div class="skill-pills">
             <div class="skill-pill" data-level="78"><i class="fab fa-aws"></i> AWS</div>
@@ -318,6 +372,7 @@
 
   <!-- PROJECTS SECTION -->
   <section class="section projects-section" id="projects">
+    <div class="section-bg-blur"></div>
     <div class="container">
       <div class="section-header reveal-up">
         <span class="section-tag">What I've Built</span>
@@ -343,7 +398,7 @@
             </div>
           </div>
           <h3 class="project-title">VibeXpert</h3>
-          <p class="project-subtitle">Student Social & Multi-Vendor E-Commerce Platform</p>
+          <p class="project-subtitle">Student Social &amp; Multi-Vendor E-Commerce Platform</p>
           <p class="project-desc">
             A campus-focused social &amp; commerce super-app for college students — combining a vibrant social feed, anonymous Ghost Chat, short-form video (RealVibes), a gamified points system, and a multi-vendor marketplace. <strong>Live on Google Play Store.</strong>
           </p>
@@ -426,7 +481,7 @@
           <div class="project-features">
             <div class="feature-item"><i class="fas fa-check"></i> Cross-platform Web + Android App</div>
             <div class="feature-item"><i class="fas fa-check"></i> AI-Powered Real Voice Conversations</div>
-            <div class="feature-item"><i class="fas fa-check"></i> Call Workflow & Conversation Management</div>
+            <div class="feature-item"><i class="fas fa-check"></i> Call Workflow &amp; Conversation Management</div>
             <div class="feature-item"><i class="fas fa-check"></i> Supabase Auth + Persistent Data</div>
           </div>
           <div class="proj-actions">
@@ -452,7 +507,7 @@
             </div>
           </div>
           <h3 class="project-title">NutriLens</h3>
-          <p class="project-subtitle">AI-Powered Food Recognition & Nutrition Analysis</p>
+          <p class="project-subtitle">AI-Powered Food Recognition &amp; Nutrition Analysis</p>
           <p class="project-desc">
             An intelligent food analysis system that processes food images and generates detailed nutritional information using AI/ML. Built with Python, Flask, and ML pipelines for image preprocessing and prediction.
           </p>
@@ -520,10 +575,11 @@
 
   <!-- ACHIEVEMENTS SECTION -->
   <section class="section achievements-section" id="achievements">
+    <div class="section-bg-blur"></div>
     <div class="container">
       <div class="section-header reveal-up">
         <span class="section-tag">My Journey</span>
-        <h2 class="section-title">Achievements & <span class="gradient-text">Recognition</span></h2>
+        <h2 class="section-title">Achievements &amp; <span class="gradient-text">Recognition</span></h2>
       </div>
 
       <div class="achievements-grid">
@@ -604,6 +660,7 @@
 
   <!-- EDUCATION SECTION -->
   <section class="section education-section" id="education">
+    <div class="section-bg-blur"></div>
     <div class="container">
       <div class="section-header reveal-up">
         <span class="section-tag">Academic Path</span>
@@ -627,14 +684,14 @@
             <div class="timeline-body">
               <div class="degree-row">
                 <span class="degree-badge">B.Tech</span>
-                <span class="degree-name">Computer Science & Engineering</span>
+                <span class="degree-name">Computer Science &amp; Engineering</span>
               </div>
               <div class="timeline-meta">
                 <span><i class="fas fa-calendar"></i> 2023 – 2027</span>
                 <span class="cgpa-badge"><i class="fas fa-star"></i> CGPA: 6.23</span>
               </div>
               <div class="timeline-courses">
-                <span class="course-tag">Data Structures & Algorithms</span>
+                <span class="course-tag">Data Structures &amp; Algorithms</span>
                 <span class="course-tag">Object-Oriented Programming</span>
                 <span class="course-tag">Operating Systems</span>
                 <span class="course-tag">Database Management</span>
@@ -659,7 +716,7 @@
             <div class="timeline-body">
               <div class="degree-row">
                 <span class="degree-badge badge-2">Class XII</span>
-                <span class="degree-name">Physics, Chemistry & Mathematics</span>
+                <span class="degree-name">Physics, Chemistry &amp; Mathematics</span>
               </div>
               <div class="timeline-meta">
                 <span><i class="fas fa-calendar"></i> 2021 – 2023</span>
@@ -672,7 +729,7 @@
     </div>
   </section>
 
-  <!-- CONTACT SECTION -->
+  <!-- CONTACT SECTION (no background animation blur — clean solid) -->
   <section class="section contact-section" id="contact">
     <div class="container">
       <div class="section-header reveal-up">
@@ -726,7 +783,7 @@
             <div class="avail-dot"></div>
             <div>
               <div class="avail-title">Currently Available</div>
-              <div class="avail-desc">Open to internships, freelance projects & full-time roles</div>
+              <div class="avail-desc">Open to internships, freelance projects &amp; full-time roles</div>
             </div>
           </div>
         </div>

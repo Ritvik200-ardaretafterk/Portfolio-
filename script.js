@@ -1,60 +1,78 @@
 /* =============================================
    RITVIK PORTFOLIO — JAVASCRIPT
-   Animations, Interactions & Special Effects
+   Vibrant Orange·Blue·Red·Cream Theme
+   Enhanced Animations & Interactions
    ============================================= */
 
 'use strict';
 
-/* ── CANVAS PARTICLE BACKGROUND ── */
+/* ── CANVAS PARTICLE BACKGROUND (shows blurred on inner sections) ── */
 (function initCanvas() {
   const canvas = document.getElementById('bgCanvas');
   const ctx = canvas.getContext('2d');
-  let W, H, particles = [], connections = [], mouse = { x: -9999, y: -9999 };
+  let W, H, particles = [], mouse = { x: -9999, y: -9999 };
 
-  const COLORS = ['rgba(124,58,237,', 'rgba(6,182,212,', 'rgba(167,139,250,'];
+  // Vibrant orange, blue, red color palette
+  const COLORS = [
+    'rgba(255,107,43,',   // orange
+    'rgba(37,99,235,',    // blue
+    'rgba(239,68,68,',    // red
+    'rgba(245,158,11,',   // amber
+    'rgba(96,165,250,',   // blue-light
+    'rgba(255,154,108,',  // orange-light
+  ];
+
+  // Floating 3D orbs / large glow blobs
+  const ORBS = [
+    { x: 0.15, y: 0.25, r: 220, color: 'rgba(255,107,43,', alpha: 0.06 },
+    { x: 0.85, y: 0.65, r: 260, color: 'rgba(37,99,235,',  alpha: 0.05 },
+    { x: 0.5,  y: 0.8,  r: 180, color: 'rgba(239,68,68,',  alpha: 0.04 },
+  ];
+  let orbPhase = 0;
 
   function resize() {
     W = canvas.width  = window.innerWidth;
     H = canvas.height = window.innerHeight;
   }
 
-  function Particle() {
-    this.reset();
-  }
+  function Particle() { this.reset(); }
   Particle.prototype.reset = function () {
     this.x     = Math.random() * W;
     this.y     = Math.random() * H;
-    this.vx    = (Math.random() - 0.5) * 0.35;
-    this.vy    = (Math.random() - 0.5) * 0.35;
-    this.r     = Math.random() * 1.8 + 0.5;
+    this.vx    = (Math.random() - 0.5) * 0.4;
+    this.vy    = (Math.random() - 0.5) * 0.4;
+    this.r     = Math.random() * 2.2 + 0.5;
     this.color = COLORS[Math.floor(Math.random() * COLORS.length)];
-    this.alpha = Math.random() * 0.5 + 0.2;
+    this.alpha = Math.random() * 0.55 + 0.2;
     this.life  = Math.random() * 200 + 100;
     this.age   = 0;
+    this.pulse = Math.random() * Math.PI * 2;
   };
   Particle.prototype.update = function () {
     const dx = mouse.x - this.x, dy = mouse.y - this.y;
     const dist = Math.sqrt(dx * dx + dy * dy);
-    if (dist < 140) {
-      const force = (140 - dist) / 140 * 0.4;
+    if (dist < 150) {
+      const force = (150 - dist) / 150 * 0.45;
       this.vx -= (dx / dist) * force;
       this.vy -= (dy / dist) * force;
     }
     this.vx *= 0.99; this.vy *= 0.99;
     this.x += this.vx; this.y += this.vy;
     this.age++;
+    this.pulse += 0.04;
     if (this.x < 0 || this.x > W || this.y < 0 || this.y > H || this.age > this.life) this.reset();
   };
   Particle.prototype.draw = function () {
+    const pulsedAlpha = this.alpha * (0.7 + 0.3 * Math.sin(this.pulse));
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
-    ctx.fillStyle = this.color + this.alpha + ')';
+    ctx.fillStyle = this.color + pulsedAlpha + ')';
     ctx.fill();
   };
 
   function initParticles() {
     particles = [];
-    const count = Math.min(Math.floor(W * H / 14000), 120);
+    const count = Math.min(Math.floor(W * H / 11000), 140);
     for (let i = 0; i < count; i++) particles.push(new Particle());
   }
 
@@ -64,12 +82,14 @@
         const dx = particles[i].x - particles[j].x;
         const dy = particles[i].y - particles[j].y;
         const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 110) {
+        if (dist < 115) {
           ctx.beginPath();
           ctx.moveTo(particles[i].x, particles[i].y);
           ctx.lineTo(particles[j].x, particles[j].y);
-          const a = (1 - dist / 110) * 0.12;
-          ctx.strokeStyle = `rgba(124,58,237,${a})`;
+          const a = (1 - dist / 115) * 0.1;
+          // Alternate orange and blue connections
+          const hue = (i + j) % 2 === 0 ? `rgba(255,107,43,${a})` : `rgba(37,99,235,${a})`;
+          ctx.strokeStyle = hue;
           ctx.lineWidth = 0.5;
           ctx.stroke();
         }
@@ -77,8 +97,24 @@
     }
   }
 
+  function drawOrbs() {
+    orbPhase += 0.008;
+    ORBS.forEach((orb, i) => {
+      const px = orb.x * W + Math.sin(orbPhase + i * 1.2) * 60;
+      const py = orb.y * H + Math.cos(orbPhase + i * 0.9) * 40;
+      const grad = ctx.createRadialGradient(px, py, 0, px, py, orb.r);
+      grad.addColorStop(0, orb.color + orb.alpha + ')');
+      grad.addColorStop(1, orb.color + '0)');
+      ctx.beginPath();
+      ctx.arc(px, py, orb.r, 0, Math.PI * 2);
+      ctx.fillStyle = grad;
+      ctx.fill();
+    });
+  }
+
   function animate() {
     ctx.clearRect(0, 0, W, H);
+    drawOrbs();
     drawConnections();
     particles.forEach(p => { p.update(); p.draw(); });
     requestAnimationFrame(animate);
@@ -89,6 +125,33 @@
   resize();
   initParticles();
   animate();
+})();
+
+
+/* ── CANVAS BLUR CONTROL (blurred on non-hero sections) ── */
+(function initCanvasBlur() {
+  const canvas = document.getElementById('bgCanvas');
+  const ticker = document.getElementById('rolesTicker');
+  const wheel  = document.getElementById('roleWheel');
+  const contact = document.getElementById('contact');
+
+  // Apply blurred canvas style for all inner sections (not hero)
+  // Hero has no overlay → raw canvas. Others have section-bg-blur overlay in HTML.
+
+  // Ticker & wheel: hide when in contact section
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        ticker.classList.add('hide-ticker');
+        wheel.classList.add('hide-wheel');
+      } else {
+        ticker.classList.remove('hide-ticker');
+        wheel.classList.remove('hide-wheel');
+      }
+    });
+  }, { threshold: 0.3 });
+
+  observer.observe(contact);
 })();
 
 
@@ -125,7 +188,6 @@
     navbar.classList.toggle('scrolled', window.scrollY > 50);
   });
 
-  // Hamburger
   const hamburger = document.getElementById('hamburger');
   const navLinks  = document.getElementById('navLinks');
   hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
@@ -137,12 +199,13 @@
 (function initTypewriter() {
   const el = document.getElementById('titleDynamic');
   const phrases = [
+    'AI-Powered Tools',
     'Full-Stack Apps',
     'Real-Time Systems',
-    'AI-Powered Tools',
     'Scalable Backends',
     'Beautiful UIs',
     'E-Commerce Platforms',
+    'ML Pipelines',
   ];
   let pi = 0, ci = 0, deleting = false;
 
@@ -150,12 +213,12 @@
     const phrase = phrases[pi];
     if (!deleting) {
       el.textContent = phrase.slice(0, ++ci);
-      if (ci === phrase.length) { deleting = true; setTimeout(type, 2000); return; }
+      if (ci === phrase.length) { deleting = true; setTimeout(type, 2200); return; }
     } else {
       el.textContent = phrase.slice(0, --ci);
       if (ci === 0) { deleting = false; pi = (pi + 1) % phrases.length; }
     }
-    setTimeout(type, deleting ? 45 : 90);
+    setTimeout(type, deleting ? 42 : 85);
   }
   type();
 })();
@@ -173,7 +236,7 @@
         observer.unobserve(el);
       }
     });
-  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
   els.forEach(el => observer.observe(el));
 })();
 
@@ -228,16 +291,16 @@
 })();
 
 
-/* ── PROJECT CARD TILT EFFECT ── */
+/* ── PROJECT CARD 3D TILT EFFECT ── */
 (function initTilt() {
   document.querySelectorAll('.project-card, .achievement-card').forEach(card => {
     card.addEventListener('mousemove', e => {
       const rect  = card.getBoundingClientRect();
       const cx    = rect.left + rect.width  / 2;
       const cy    = rect.top  + rect.height / 2;
-      const rx    = ((e.clientY - cy) / (rect.height / 2)) * 4;
-      const ry    = ((e.clientX - cx) / (rect.width  / 2)) * -4;
-      card.style.transform = `perspective(1000px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-4px)`;
+      const rx    = ((e.clientY - cy) / (rect.height / 2)) * 5;
+      const ry    = ((e.clientX - cx) / (rect.width  / 2)) * -5;
+      card.style.transform = `perspective(1000px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-5px)`;
     });
     card.addEventListener('mouseleave', () => {
       card.style.transform = '';
@@ -256,7 +319,6 @@ function handleFormSubmit(e) {
   btn.textContent = 'Sending…';
   btn.disabled    = true;
 
-  // Simulate send (replace with real EmailJS or backend call)
   setTimeout(() => {
     btn.style.display    = 'none';
     success.style.display = 'flex';
@@ -283,18 +345,18 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   if (!nameEl) return;
   setInterval(() => {
     nameEl.style.textShadow = `
-      ${Math.random() * 4 - 2}px 0 rgba(124,58,237,0.7),
-      ${Math.random() * -4}px 0 rgba(6,182,212,0.5)
+      ${Math.random() * 4 - 2}px 0 rgba(255,107,43,0.7),
+      ${Math.random() * -4}px 0 rgba(37,99,235,0.5)
     `;
     setTimeout(() => { nameEl.style.textShadow = ''; }, 120);
-  }, 4000);
+  }, 4500);
 })();
 
 
 /* ── NAV ACTIVE STYLE ── */
 (function addActiveNavStyle() {
   const style = document.createElement('style');
-  style.textContent = `.nav-link.active { color: var(--text-primary); background: rgba(124,58,237,0.12); }`;
+  style.textContent = `.nav-link.active { color: var(--orange-light) !important; background: rgba(255,107,43,0.1); }`;
   document.head.appendChild(style);
 })();
 
@@ -303,9 +365,10 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 (function initScrollProgress() {
   const bar = document.createElement('div');
   bar.style.cssText = `
-    position: fixed; top: 0; left: 0; height: 2px; z-index: 10000;
-    background: linear-gradient(90deg, #7c3aed, #06b6d4);
+    position: fixed; top: 0; left: 0; height: 3px; z-index: 10000;
+    background: linear-gradient(90deg, #ff6b2b, #ef4444, #2563eb);
     transition: width 0.1s; pointer-events: none;
+    box-shadow: 0 0 8px rgba(255,107,43,0.5);
   `;
   document.body.appendChild(bar);
   window.addEventListener('scroll', () => {
@@ -315,29 +378,33 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 })();
 
 
-/* ── FLOATING PARTICLES ON ACHIEVEMENT HOVER ── */
+/* ── ACHIEVEMENT CARD SPARKLE BURST ── */
 (function initAchievementSparkle() {
   document.querySelectorAll('.achievement-card').forEach(card => {
     card.addEventListener('mouseenter', () => {
-      for (let i = 0; i < 6; i++) {
+      for (let i = 0; i < 8; i++) {
         const spark = document.createElement('div');
         const angle = (Math.random() * 360) * (Math.PI / 180);
-        const dist  = Math.random() * 60 + 30;
+        const dist  = Math.random() * 70 + 30;
+        // Random from vibrant palette
+        const colors = ['#ff6b2b', '#2563eb', '#ef4444', '#f59e0b', '#60a5fa', '#fca5a5'];
+        const color = colors[Math.floor(Math.random() * colors.length)];
         spark.style.cssText = `
           position: absolute;
-          width: 4px; height: 4px;
-          background: hsl(${Math.random() * 80 + 240}, 90%, 70%);
+          width: 5px; height: 5px;
+          background: ${color};
           border-radius: 50%;
           top: 50%; left: 50%;
           pointer-events: none;
           z-index: 10;
-          animation: spark-out 0.7s ease-out forwards;
+          animation: spark-out 0.75s ease-out forwards;
           --tx: ${Math.cos(angle) * dist}px;
           --ty: ${Math.sin(angle) * dist}px;
+          box-shadow: 0 0 6px ${color};
         `;
         card.style.overflow = 'hidden';
         card.appendChild(spark);
-        setTimeout(() => spark.remove(), 700);
+        setTimeout(() => spark.remove(), 750);
       }
     });
   });
@@ -353,11 +420,144 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 })();
 
 
+/* ── HERO STATS COUNTER ON LOAD ── */
+(function initHeroStats() {
+  const stats = [
+    { el: null, target: 20, suffix: '+', label: 'Live Sites' },
+    { el: null, target: 400, suffix: '+', label: 'DSA Problems' },
+    { el: null, target: 200, suffix: '+', label: 'App Downloads' },
+  ];
+  const nums = document.querySelectorAll('.stat-num');
+  nums.forEach((el, i) => {
+    if (!stats[i]) return;
+    const target = stats[i].target;
+    const suffix = stats[i].suffix;
+    let current = 0;
+    const step = Math.ceil(target / 80);
+    const delay = 800 + i * 200;
+    setTimeout(() => {
+      const timer = setInterval(() => {
+        current = Math.min(current + step, target);
+        el.textContent = current + (current === target ? suffix : '');
+        if (current >= target) clearInterval(timer);
+      }, 20);
+    }, delay);
+  });
+})();
+
+
+/* ── MAGNETIC BUTTON EFFECT ── */
+(function initMagnetic() {
+  document.querySelectorAll('.btn-primary, .btn-secondary, .btn-hire').forEach(btn => {
+    btn.addEventListener('mousemove', e => {
+      const rect = btn.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top  + rect.height / 2;
+      const dx = (e.clientX - cx) * 0.2;
+      const dy = (e.clientY - cy) * 0.2;
+      btn.style.transform = `translate(${dx}px, ${dy}px) translateY(-2px)`;
+    });
+    btn.addEventListener('mouseleave', () => {
+      btn.style.transform = '';
+    });
+  });
+})();
+
+
+/* ── SKILL CATEGORY STAGGER ANIMATION ── */
+(function initSkillStagger() {
+  const categories = document.querySelectorAll('.skill-category');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }, i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  categories.forEach(cat => {
+    cat.style.opacity = '0';
+    cat.style.transform = 'translateY(30px)';
+    cat.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(cat);
+  });
+})();
+
+
 /* ── PAGE LOAD ANIMATION ── */
 (function initPageLoad() {
   document.body.style.opacity = '0';
   window.addEventListener('load', () => {
-    document.body.style.transition = 'opacity 0.6s ease';
+    document.body.style.transition = 'opacity 0.7s ease';
     document.body.style.opacity = '1';
   });
+})();
+
+
+/* ── FLOATING PARTICLE TRAIL ON MOUSE ── */
+(function initMouseTrail() {
+  const trailColors = ['#ff6b2b', '#2563eb', '#ef4444', '#f59e0b'];
+  let throttle = 0;
+
+  document.addEventListener('mousemove', e => {
+    if (Date.now() - throttle < 60) return;
+    throttle = Date.now();
+
+    const dot = document.createElement('div');
+    const color = trailColors[Math.floor(Math.random() * trailColors.length)];
+    dot.style.cssText = `
+      position: fixed;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: ${color};
+      left: ${e.clientX}px;
+      top: ${e.clientY}px;
+      pointer-events: none;
+      z-index: 9990;
+      transform: translate(-50%, -50%);
+      opacity: 0.7;
+      animation: trail-fade 0.6s ease-out forwards;
+    `;
+    document.body.appendChild(dot);
+    setTimeout(() => dot.remove(), 600);
+  });
+
+  const trailStyle = document.createElement('style');
+  trailStyle.textContent = `
+    @keyframes trail-fade {
+      0%   { opacity: 0.7; transform: translate(-50%, -50%) scale(1); }
+      100% { opacity: 0; transform: translate(-50%, -50%) scale(0) translateY(-20px); }
+    }
+  `;
+  document.head.appendChild(trailStyle);
+})();
+
+
+/* ── SECTION ENTRY FLASH HIGHLIGHT ── */
+(function initSectionHighlight() {
+  const sections = document.querySelectorAll('section[id]');
+  const flash = document.createElement('div');
+  flash.style.cssText = `
+    position: fixed; inset: 0;
+    pointer-events: none;
+    z-index: 5;
+    opacity: 0;
+    background: radial-gradient(ellipse at 50% 50%, rgba(255,107,43,0.04), transparent 70%);
+    transition: opacity 0.4s;
+  `;
+  document.body.appendChild(flash);
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        flash.style.opacity = '1';
+        setTimeout(() => { flash.style.opacity = '0'; }, 400);
+      }
+    });
+  }, { threshold: 0.5 });
+  sections.forEach(s => observer.observe(s));
 })();
