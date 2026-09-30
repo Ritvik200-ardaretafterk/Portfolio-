@@ -12,17 +12,15 @@
   const ctx = canvas.getContext('2d');
   let W, H, particles = [], mouse = { x: -9999, y: -9999 };
 
-  // Vibrant orange, blue, red color palette
   const COLORS = [
-    'rgba(255,107,43,',   // orange
-    'rgba(37,99,235,',    // blue
-    'rgba(239,68,68,',    // red
-    'rgba(245,158,11,',   // amber
-    'rgba(96,165,250,',   // blue-light
-    'rgba(255,154,108,',  // orange-light
+    'rgba(255,107,43,',
+    'rgba(37,99,235,',
+    'rgba(239,68,68,',
+    'rgba(245,158,11,',
+    'rgba(96,165,250,',
+    'rgba(255,154,108,',
   ];
 
-  // Floating 3D orbs / large glow blobs
   const ORBS = [
     { x: 0.15, y: 0.25, r: 220, color: 'rgba(255,107,43,', alpha: 0.06 },
     { x: 0.85, y: 0.65, r: 260, color: 'rgba(37,99,235,',  alpha: 0.05 },
@@ -87,7 +85,6 @@
           ctx.moveTo(particles[i].x, particles[i].y);
           ctx.lineTo(particles[j].x, particles[j].y);
           const a = (1 - dist / 115) * 0.1;
-          // Alternate orange and blue connections
           const hue = (i + j) % 2 === 0 ? `rgba(255,107,43,${a})` : `rgba(37,99,235,${a})`;
           ctx.strokeStyle = hue;
           ctx.lineWidth = 0.5;
@@ -128,17 +125,12 @@
 })();
 
 
-/* ── CANVAS BLUR CONTROL (blurred on non-hero sections) ── */
+/* ── CANVAS BLUR CONTROL ── */
 (function initCanvasBlur() {
-  const canvas = document.getElementById('bgCanvas');
-  const ticker = document.getElementById('rolesTicker');
-  const wheel  = document.getElementById('roleWheel');
+  const ticker  = document.getElementById('rolesTicker');
+  const wheel   = document.getElementById('roleWheel');
   const contact = document.getElementById('contact');
 
-  // Apply blurred canvas style for all inner sections (not hero)
-  // Hero has no overlay → raw canvas. Others have section-bg-blur overlay in HTML.
-
-  // Ticker & wheel: hide when in contact section
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -174,7 +166,7 @@
   }
   animateCursor();
 
-  document.querySelectorAll('a, button, .skill-pill, .project-card, .fact-card, .achievement-card').forEach(el => {
+  document.querySelectorAll('a, button, .skill-pill, .project-card, .fact-card, .achievement-card, .spec-card, .social-pill, .cta-primary, .cta-ghost').forEach(el => {
     el.addEventListener('mouseenter', () => { cursor.classList.add('hover'); follower.classList.add('hover'); });
     el.addEventListener('mouseleave', () => { cursor.classList.remove('hover'); follower.classList.remove('hover'); });
   });
@@ -195,32 +187,41 @@
 })();
 
 
-/* ── TYPEWRITER EFFECT ── */
-(function initTypewriter() {
-  const el = document.getElementById('titleDynamic');
-  const phrases = [
-    'AI-Powered Tools',
-    'Full-Stack Apps',
-    'Real-Time Systems',
-    'Scalable Backends',
-    'Beautiful UIs',
-    'E-Commerce Platforms',
-    'ML Pipelines',
-  ];
-  let pi = 0, ci = 0, deleting = false;
+/* ── HERO METRIC COUNTERS (triggered on load) ── */
+(function initHeroMetrics() {
+  const metricNums = document.querySelectorAll('.metric-num[data-count]');
+  metricNums.forEach((el, i) => {
+    const target = parseInt(el.dataset.count);
+    const suffix = el.dataset.suffix || '+';
+    let current = 0;
+    const step = Math.ceil(target / 80);
+    const delay = 900 + i * 220;
+    setTimeout(() => {
+      const timer = setInterval(() => {
+        current = Math.min(current + step, target);
+        el.textContent = current + (current === target ? suffix : '');
+        if (current >= target) {
+          clearInterval(timer);
+          el.classList.add('counted');
+        }
+      }, 18);
+    }, delay);
+  });
+})();
 
-  function type() {
-    const phrase = phrases[pi];
-    if (!deleting) {
-      el.textContent = phrase.slice(0, ++ci);
-      if (ci === phrase.length) { deleting = true; setTimeout(type, 2200); return; }
-    } else {
-      el.textContent = phrase.slice(0, --ci);
-      if (ci === 0) { deleting = false; pi = (pi + 1) % phrases.length; }
-    }
-    setTimeout(type, deleting ? 42 : 85);
-  }
-  type();
+
+/* ── ORB SYSTEM MOUSE PARALLAX ── */
+(function initOrbParallax() {
+  const orbSystem = document.getElementById('orbSystem');
+  if (!orbSystem) return;
+
+  document.addEventListener('mousemove', e => {
+    const cx = window.innerWidth / 2;
+    const cy = window.innerHeight / 2;
+    const dx = (e.clientX - cx) / cx;
+    const dy = (e.clientY - cy) / cy;
+    orbSystem.style.transform = `translate(${dx * 12}px, ${dy * 8}px)`;
+  });
 })();
 
 
@@ -259,7 +260,7 @@
 })();
 
 
-/* ── COUNTER ANIMATION ── */
+/* ── COUNTER ANIMATION (freelance section) ── */
 (function initCounters() {
   const counters = document.querySelectorAll('.counter-num');
   const observer = new IntersectionObserver((entries) => {
@@ -339,7 +340,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 });
 
 
-/* ── GLITCH EFFECT ON HERO NAME ── */
+/* ── HERO NAME GLITCH ── */
 (function initGlitch() {
   const nameEl = document.querySelector('.hero-name');
   if (!nameEl) return;
@@ -386,7 +387,6 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
         const spark = document.createElement('div');
         const angle = (Math.random() * 360) * (Math.PI / 180);
         const dist  = Math.random() * 70 + 30;
-        // Random from vibrant palette
         const colors = ['#ff6b2b', '#2563eb', '#ef4444', '#f59e0b', '#60a5fa', '#fca5a5'];
         const color = colors[Math.floor(Math.random() * colors.length)];
         spark.style.cssText = `
@@ -420,41 +420,15 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 })();
 
 
-/* ── HERO STATS COUNTER ON LOAD ── */
-(function initHeroStats() {
-  const stats = [
-    { el: null, target: 20, suffix: '+', label: 'Live Sites' },
-    { el: null, target: 400, suffix: '+', label: 'DSA Problems' },
-    { el: null, target: 200, suffix: '+', label: 'App Downloads' },
-  ];
-  const nums = document.querySelectorAll('.stat-num');
-  nums.forEach((el, i) => {
-    if (!stats[i]) return;
-    const target = stats[i].target;
-    const suffix = stats[i].suffix;
-    let current = 0;
-    const step = Math.ceil(target / 80);
-    const delay = 800 + i * 200;
-    setTimeout(() => {
-      const timer = setInterval(() => {
-        current = Math.min(current + step, target);
-        el.textContent = current + (current === target ? suffix : '');
-        if (current >= target) clearInterval(timer);
-      }, 20);
-    }, delay);
-  });
-})();
-
-
 /* ── MAGNETIC BUTTON EFFECT ── */
 (function initMagnetic() {
-  document.querySelectorAll('.btn-primary, .btn-secondary, .btn-hire').forEach(btn => {
+  document.querySelectorAll('.cta-primary, .cta-ghost, .btn-hire, .btn-primary, .btn-secondary').forEach(btn => {
     btn.addEventListener('mousemove', e => {
       const rect = btn.getBoundingClientRect();
       const cx = rect.left + rect.width / 2;
       const cy = rect.top  + rect.height / 2;
-      const dx = (e.clientX - cx) * 0.2;
-      const dy = (e.clientY - cy) * 0.2;
+      const dx = (e.clientX - cx) * 0.18;
+      const dy = (e.clientY - cy) * 0.18;
       btn.style.transform = `translate(${dx}px, ${dy}px) translateY(-2px)`;
     });
     btn.addEventListener('mouseleave', () => {
@@ -534,6 +508,22 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     }
   `;
   document.head.appendChild(trailStyle);
+})();
+
+
+/* ── SPEC CARD 3D TILT ── */
+(function initSpecCardTilt() {
+  document.querySelectorAll('.spec-card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      const cx   = rect.left + rect.width  / 2;
+      const cy   = rect.top  + rect.height / 2;
+      const rx   = ((e.clientY - cy) / (rect.height / 2)) * 8;
+      const ry   = ((e.clientX - cx) / (rect.width  / 2)) * -8;
+      card.style.transform = `perspective(600px) rotateX(${rx}deg) rotateY(${ry}deg) scale(1.06) translateY(-5px)`;
+    });
+    card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+  });
 })();
 
 

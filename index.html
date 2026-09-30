@@ -97,107 +97,213 @@
     </div>
   </nav>
 
-  <!-- HERO SECTION -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!--   HERO — WORLD-CLASS REDESIGN                       -->
+  <!-- ═══════════════════════════════════════════════════ -->
   <section class="hero" id="home">
-    <div class="hero-content">
-      <div class="hero-badge reveal-up">
-        <span class="badge-dot"></span>
-        Available for Internships &amp; Collaborations
+
+    <!-- Cinematic grid overlay -->
+    <div class="hero-grid-overlay"></div>
+
+    <!-- Noise texture overlay -->
+    <div class="hero-noise"></div>
+
+    <!-- Morphing gradient blobs -->
+    <div class="hero-blob blob-1"></div>
+    <div class="hero-blob blob-2"></div>
+    <div class="hero-blob blob-3"></div>
+    <div class="hero-blob blob-4"></div>
+
+    <!-- Scanlines -->
+    <div class="hero-scanlines"></div>
+
+    <!-- Radial vignette -->
+    <div class="hero-vignette"></div>
+
+    <!-- LEFT CONTENT -->
+    <div class="hero-left">
+
+      <!-- Status badge -->
+      <div class="hero-status" id="heroStatus">
+        <div class="status-pulse-ring"></div>
+        <div class="status-dot"></div>
+        <span class="status-text">Open to Internships &amp; Collaborations</span>
+        <span class="status-arrow">→</span>
       </div>
-      <h1 class="hero-name reveal-up">
-        <span class="name-line">Ganugapenta</span>
-        <span class="name-line gradient-text">Ritvik</span>
-      </h1>
-      <div class="hero-title reveal-up">
-        <span class="title-static">I build</span>
-        <span class="title-dynamic" id="titleDynamic"></span>
+
+      <!-- Name block -->
+      <div class="hero-name-block">
+        <div class="hero-eyebrow">
+          <span class="eyebrow-line"></span>
+          <span class="eyebrow-text">Full Stack Developer &amp; AI Engineer</span>
+          <span class="eyebrow-line"></span>
+        </div>
+        <h1 class="hero-name" id="heroName">
+          <span class="name-word" data-word="Ganugapenta">Ganugapenta</span>
+          <span class="name-word name-accent" data-word="Ritvik">Ritvik</span>
+        </h1>
+        <!-- Outline ghost text -->
+        <div class="hero-name-ghost" aria-hidden="true">DEVELOPER</div>
       </div>
-      <p class="hero-desc reveal-up">
-        Full-Stack Developer &amp; AI Enthusiast crafting scalable web applications,<br/>
-        real-time systems, and AI-powered experiences. B.Tech CSE @ MANIT Bhopal.
+
+      <!-- Dynamic subtitle -->
+      <div class="hero-subtitle">
+        <span class="subtitle-label">I engineer</span>
+        <div class="subtitle-dynamic-wrap">
+          <div class="subtitle-slider" id="subtitleSlider">
+            <span>AI-Powered Systems</span>
+            <span>Full-Stack Platforms</span>
+            <span>Real-Time Experiences</span>
+            <span>Scalable Backends</span>
+            <span>Beautiful Interfaces</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Description -->
+      <p class="hero-desc">
+        Crafting production-grade web applications, real-time systems &amp; AI experiences.<br/>
+        B.Tech CSE @ <strong>MANIT Bhopal</strong> · 20+ live deployments · 400+ DSA solved.
       </p>
-      <div class="hero-actions reveal-up">
-        <a href="#projects" class="btn-primary">
-          <span>View Projects</span>
-          <i class="fas fa-arrow-right"></i>
+
+      <!-- CTA buttons -->
+      <div class="hero-ctas">
+        <a href="#projects" class="cta-primary">
+          <span class="cta-bg"></span>
+          <span class="cta-text">Explore Work</span>
+          <span class="cta-icon">
+            <i class="fas fa-arrow-right"></i>
+          </span>
         </a>
-        <a href="mailto:ganugaritwik@gmail.com" class="btn-secondary">
+        <a href="mailto:ganugaritwik@gmail.com" class="cta-ghost">
           <i class="fas fa-envelope"></i>
-          <span>Get In Touch</span>
+          <span>Let's Talk</span>
         </a>
       </div>
-      <div class="hero-socials reveal-up">
-        <a href="https://github.com/Ritvik200-ardaretafterk" target="_blank" class="social-icon" aria-label="GitHub">
+
+      <!-- Social links -->
+      <div class="hero-socials">
+        <a href="https://github.com/Ritvik200-ardaretafterk" target="_blank" class="social-pill" aria-label="GitHub">
           <i class="fab fa-github"></i>
+          <span>GitHub</span>
         </a>
-        <a href="https://linkedin.com/in/g-ritvik" target="_blank" class="social-icon" aria-label="LinkedIn">
+        <a href="https://linkedin.com/in/g-ritvik" target="_blank" class="social-pill" aria-label="LinkedIn">
           <i class="fab fa-linkedin-in"></i>
+          <span>LinkedIn</span>
         </a>
-        <a href="mailto:ganugaritwik@gmail.com" class="social-icon" aria-label="Email">
+        <a href="mailto:ganugaritwik@gmail.com" class="social-pill" aria-label="Email">
           <i class="fas fa-envelope"></i>
+          <span>Email</span>
         </a>
-        <a href="https://leetcode.com/" target="_blank" class="social-icon" aria-label="LeetCode">
+        <a href="https://leetcode.com/" target="_blank" class="social-pill" aria-label="LeetCode">
           <i class="fas fa-code"></i>
+          <span>LeetCode</span>
         </a>
       </div>
     </div>
 
-    <div class="hero-visual">
-      <div class="hero-card-container">
-        <div class="floating-card card-1">
-          <div class="card-icon"><i class="fas fa-layer-group"></i></div>
-          <div>
-            <div class="card-label">Full Stack</div>
-            <div class="card-sublabel">React • Node • MongoDB</div>
+    <!-- RIGHT VISUAL -->
+    <div class="hero-right">
+
+      <!-- Central orb + avatar -->
+      <div class="hero-orb-system" id="orbSystem">
+
+        <!-- Outer ring orbits -->
+        <div class="orb-ring ring-orbit-1">
+          <div class="ring-planet planet-react">
+            <i class="fab fa-react"></i>
           </div>
         </div>
-        <div class="floating-card card-2">
-          <div class="card-icon ai"><i class="fas fa-brain"></i></div>
-          <div>
-            <div class="card-label">AI/ML</div>
-            <div class="card-sublabel">Gemini API • RAG • ML</div>
+        <div class="orb-ring ring-orbit-2">
+          <div class="ring-planet planet-node">
+            <i class="fab fa-node-js"></i>
           </div>
         </div>
-        <div class="floating-card card-3">
-          <div class="card-icon cloud"><i class="fas fa-cloud"></i></div>
-          <div>
-            <div class="card-label">Cloud &amp; DevOps</div>
-            <div class="card-sublabel">AWS • Docker • Linux</div>
+        <div class="orb-ring ring-orbit-3">
+          <div class="ring-planet planet-ai">
+            <i class="fas fa-brain"></i>
           </div>
         </div>
-        <div class="hero-avatar-wrap">
-          <div class="avatar-ring ring-1"></div>
-          <div class="avatar-ring ring-2"></div>
-          <div class="avatar-ring ring-3"></div>
-          <div class="avatar-core">
-            <span class="avatar-initials">GR</span>
+
+        <!-- Glowing track rings -->
+        <div class="ring-track track-1"></div>
+        <div class="ring-track track-2"></div>
+        <div class="ring-track track-3"></div>
+
+        <!-- Core avatar -->
+        <div class="orb-core">
+          <div class="orb-core-glow"></div>
+          <div class="orb-core-inner">
+            <div class="avatar-initials">GR</div>
+            <div class="avatar-subtitle">Full Stack</div>
           </div>
-          <div class="orbit orbit-1"><div class="orbit-dot"></div></div>
-          <div class="orbit orbit-2"><div class="orbit-dot dot-2"></div></div>
         </div>
-        <div class="hero-stats">
-          <div class="stat-pill">
-            <span class="stat-num">20+</span>
-            <span class="stat-text">Live Sites</span>
-          </div>
-          <div class="stat-pill">
-            <span class="stat-num">400+</span>
-            <span class="stat-text">DSA Problems</span>
-          </div>
-          <div class="stat-pill">
-            <span class="stat-num">200+</span>
-            <span class="stat-text">App Downloads</span>
-          </div>
+      </div>
+
+      <!-- Floating spec cards -->
+      <div class="spec-card spec-card-tl">
+        <div class="spec-icon"><i class="fas fa-layer-group"></i></div>
+        <div class="spec-info">
+          <div class="spec-title">Full Stack</div>
+          <div class="spec-sub">React · Node · MongoDB</div>
+        </div>
+        <div class="spec-dot dot-orange"></div>
+      </div>
+
+      <div class="spec-card spec-card-tr">
+        <div class="spec-icon spec-icon-ai"><i class="fas fa-brain"></i></div>
+        <div class="spec-info">
+          <div class="spec-title">AI / ML</div>
+          <div class="spec-sub">Gemini · RAG · LLMs</div>
+        </div>
+        <div class="spec-dot dot-blue"></div>
+      </div>
+
+      <div class="spec-card spec-card-bl">
+        <div class="spec-icon spec-icon-cloud"><i class="fas fa-cloud"></i></div>
+        <div class="spec-info">
+          <div class="spec-title">Cloud</div>
+          <div class="spec-sub">AWS · Docker · CI/CD</div>
+        </div>
+        <div class="spec-dot dot-cyan"></div>
+      </div>
+
+      <div class="spec-card spec-card-br">
+        <div class="spec-icon spec-icon-rt"><i class="fas fa-bolt"></i></div>
+        <div class="spec-info">
+          <div class="spec-title">Real-Time</div>
+          <div class="spec-sub">Socket.IO · Redis</div>
+        </div>
+        <div class="spec-dot dot-green"></div>
+      </div>
+
+      <!-- Stats row -->
+      <div class="hero-metrics">
+        <div class="metric-pill">
+          <span class="metric-num" data-count="20" data-suffix="+">0</span>
+          <span class="metric-label">Live Sites</span>
+        </div>
+        <div class="metric-divider"></div>
+        <div class="metric-pill">
+          <span class="metric-num" data-count="400" data-suffix="+">0</span>
+          <span class="metric-label">DSA Solved</span>
+        </div>
+        <div class="metric-divider"></div>
+        <div class="metric-pill">
+          <span class="metric-num" data-count="200" data-suffix="+">0</span>
+          <span class="metric-label">Downloads</span>
         </div>
       </div>
     </div>
 
-    <div class="scroll-indicator">
-      <div class="scroll-mouse">
-        <div class="scroll-wheel"></div>
+    <!-- Scroll indicator -->
+    <div class="hero-scroll">
+      <div class="scroll-track">
+        <div class="scroll-thumb"></div>
       </div>
-      <span>Scroll Down</span>
+      <span>Scroll</span>
     </div>
+
   </section>
 
   <!-- ABOUT SECTION -->
