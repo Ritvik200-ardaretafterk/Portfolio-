@@ -551,3 +551,84 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   }, { threshold: 0.5 });
   sections.forEach(s => observer.observe(s));
 })();
+
+
+/* ═══════════════════════════════════════════════
+   PERSONAL INFO POPUP — OPEN / CLOSE
+   ═══════════════════════════════════════════════ */
+
+function openPersonalInfo() {
+  const overlay = document.getElementById('piOverlay');
+  const modal   = document.getElementById('piModal');
+  if (!overlay) return;
+
+  // Prevent body scroll
+  document.body.style.overflow = 'hidden';
+
+  // Reset card animations so they replay
+  overlay.querySelectorAll('.pi-card').forEach(c => {
+    c.style.animation = 'none';
+    c.offsetHeight; // force reflow
+    c.style.animation = '';
+  });
+
+  overlay.classList.add('active');
+
+  // Close on Escape
+  document.addEventListener('keydown', handleEscKey);
+}
+
+function closePersonalInfo(e) {
+  // If clicking overlay itself (not modal), close
+  if (e && e.target !== document.getElementById('piOverlay')) return;
+  _dismissPersonalInfo();
+}
+
+function _dismissPersonalInfo() {
+  const overlay = document.getElementById('piOverlay');
+  if (!overlay) return;
+  overlay.classList.remove('active');
+  document.body.style.overflow = '';
+  document.removeEventListener('keydown', handleEscKey);
+}
+
+function handleEscKey(e) {
+  if (e.key === 'Escape') _dismissPersonalInfo();
+}
+
+// Also: close button calls closePersonalInfo() with no event arg → needs fix
+// Override: close button directly triggers dismiss
+document.addEventListener('DOMContentLoaded', () => {
+  const closeBtn = document.querySelector('.pi-close');
+  if (closeBtn) {
+    closeBtn.onclick = () => _dismissPersonalInfo();
+  }
+
+  // Clicking overlay background closes modal
+  const overlay = document.getElementById('piOverlay');
+  if (overlay) {
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) _dismissPersonalInfo();
+    });
+  }
+
+  // Animate personal info button entrance with a pulse after 2s
+  setTimeout(() => {
+    const btn = document.getElementById('personalInfoBtn');
+    if (btn) {
+      btn.style.animation = 'pib-pulse-once 0.6s ease';
+      btn.addEventListener('animationend', () => btn.style.animation = '', { once: true });
+    }
+  }, 2000);
+});
+
+// One-time pulse on the button to draw attention
+const pibStyle = document.createElement('style');
+pibStyle.textContent = `
+  @keyframes pib-pulse-once {
+    0%   { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,107,43,0.5); }
+    50%  { transform: scale(1.06); box-shadow: 0 0 0 12px rgba(255,107,43,0); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,107,43,0); }
+  }
+`;
+document.head.appendChild(pibStyle);

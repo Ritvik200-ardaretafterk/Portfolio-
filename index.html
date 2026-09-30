@@ -230,14 +230,30 @@
         <div class="ring-track track-2"></div>
         <div class="ring-track track-3"></div>
 
-        <!-- Core avatar -->
-        <div class="orb-core">
+        <!-- Core avatar — REAL PHOTO -->
+        <div class="orb-core" id="orbCore" onclick="openPersonalInfo()">
           <div class="orb-core-glow"></div>
-          <div class="orb-core-inner">
-            <div class="avatar-initials">GR</div>
-            <div class="avatar-subtitle">Full Stack</div>
+          <div class="orb-core-inner photo-core">
+            <img src="ritvik.jpg" alt="Ganugapenta Ritvik" class="avatar-photo" />
+            <div class="photo-overlay">
+              <i class="fas fa-id-card"></i>
+            </div>
           </div>
         </div>
+      </div>
+
+      <!-- Photo label + personal info CTA -->
+      <div class="photo-info-block">
+        <div class="photo-name-tag">
+          <span class="photo-name">Ganugapenta Ritvik</span>
+          <span class="photo-role">Full Stack Dev · AI Engineer</span>
+        </div>
+        <button class="personal-info-btn" onclick="openPersonalInfo()" id="personalInfoBtn">
+          <div class="pib-glow"></div>
+          <i class="fas fa-id-card"></i>
+          <span>Personal Info</span>
+          <span class="pib-arrow">↗</span>
+        </button>
       </div>
 
       <!-- Floating spec cards -->
@@ -295,6 +311,123 @@
         </div>
       </div>
     </div>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!--   PERSONAL INFO POPUP MODAL                     -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <div class="pi-overlay" id="piOverlay" onclick="closePersonalInfo(event)">
+    <div class="pi-modal" id="piModal">
+
+      <!-- Close button -->
+      <button class="pi-close" onclick="closePersonalInfo()" aria-label="Close">
+        <i class="fas fa-times"></i>
+      </button>
+
+      <!-- Modal header with photo -->
+      <div class="pi-header">
+        <div class="pi-photo-wrap">
+          <div class="pi-photo-ring"></div>
+          <img src="ritvik.jpg" alt="Ganugapenta Ritvik" class="pi-photo" />
+          <div class="pi-online-dot"></div>
+        </div>
+        <div class="pi-header-text">
+          <h2 class="pi-name">Ganugapenta Ritvik</h2>
+          <p class="pi-role">Full Stack Developer · AI Engineer</p>
+          <div class="pi-tags">
+            <span class="pi-tag">🎓 MANIT Bhopal</span>
+            <span class="pi-tag">☁️ AWS Certified</span>
+            <span class="pi-tag">🏆 SIH Semi-Finalist</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Info grid -->
+      <div class="pi-grid">
+
+        <div class="pi-card" data-delay="0">
+          <div class="pi-card-icon pi-icon-name"><i class="fas fa-user"></i></div>
+          <div class="pi-card-content">
+            <div class="pi-card-label">Full Name</div>
+            <div class="pi-card-value">Ganugapenta Ritvik</div>
+          </div>
+        </div>
+
+        <div class="pi-card" data-delay="50">
+          <div class="pi-card-icon pi-icon-dob"><i class="fas fa-birthday-cake"></i></div>
+          <div class="pi-card-content">
+            <div class="pi-card-label">Date of Birth</div>
+            <div class="pi-card-value">27 Feb 2006 <span class="pi-age">(Age 20)</span></div>
+          </div>
+        </div>
+
+        <div class="pi-card" data-delay="100">
+          <div class="pi-card-icon pi-icon-gender"><i class="fas fa-mars"></i></div>
+          <div class="pi-card-content">
+            <div class="pi-card-label">Gender</div>
+            <div class="pi-card-value">Male</div>
+          </div>
+        </div>
+
+        <div class="pi-card" data-delay="150">
+          <div class="pi-card-icon pi-icon-school"><i class="fas fa-school"></i></div>
+          <div class="pi-card-content">
+            <div class="pi-card-label">School</div>
+            <div class="pi-card-value">IVY League Academy School</div>
+          </div>
+        </div>
+
+        <div class="pi-card" data-delay="200">
+          <div class="pi-card-icon pi-icon-inter"><i class="fas fa-book-open"></i></div>
+          <div class="pi-card-content">
+            <div class="pi-card-label">Intermediate</div>
+            <div class="pi-card-value">Excellencia Junior College</div>
+          </div>
+        </div>
+
+        <div class="pi-card" data-delay="250">
+          <div class="pi-card-icon pi-icon-institute"><i class="fas fa-university"></i></div>
+          <div class="pi-card-content">
+            <div class="pi-card-label">Institute</div>
+            <div class="pi-card-value">NIT Bhopal (MANIT)</div>
+          </div>
+        </div>
+
+        <div class="pi-card pi-card-full" data-delay="300">
+          <div class="pi-card-icon pi-icon-address"><i class="fas fa-map-marker-alt"></i></div>
+          <div class="pi-card-content">
+            <div class="pi-card-label">Permanent Address</div>
+            <div class="pi-card-value">Karmanghat, Hyderabad, Telangana</div>
+          </div>
+        </div>
+
+        <!-- Hobbies -->
+        <div class="pi-card pi-card-full pi-hobbies-card" data-delay="350">
+          <div class="pi-card-icon pi-icon-hobbies"><i class="fas fa-heart"></i></div>
+          <div class="pi-card-content">
+            <div class="pi-card-label">Hobbies &amp; Interests</div>
+            <div class="pi-hobbies">
+              <span class="pi-hobby"><span>⚽</span> Football</span>
+              <span class="pi-hobby"><span>🏸</span> Badminton</span>
+              <span class="pi-hobby"><span>💻</span> Coding</span>
+              <span class="pi-hobby"><span>📚</span> Novels</span>
+              <span class="pi-hobby"><span>✏️</span> Writing Comics</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Footer -->
+      <div class="pi-footer">
+        <a href="mailto:ganugaritwik@gmail.com" class="pi-contact-btn">
+          <i class="fas fa-envelope"></i> Get In Touch
+        </a>
+        <a href="https://linkedin.com/in/g-ritvik" target="_blank" class="pi-contact-btn pi-linkedin">
+          <i class="fab fa-linkedin-in"></i> LinkedIn
+        </a>
+      </div>
+    </div>
+  </div>
 
     <!-- Scroll indicator -->
     <div class="hero-scroll">
